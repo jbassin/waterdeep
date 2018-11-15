@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="all">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>waterdeep-mage-keys</title>
+    <title>Waterdeep: Keys of the Mad Mage</title>
   </head>
   <body>
     <noscript>
@@ -14,4 +14,30 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <style>
+    #all {
+      background: linear-gradient(233deg, #83b7f3, #8deaa5);
+      background-size: 400% 400%;
+
+      -webkit-animation: AnimationName 37s ease infinite;
+      -moz-animation: AnimationName 37s ease infinite;
+      animation: AnimationName 37s ease infinite;
+
+      @-webkit-keyframes AnimationName {
+        0%{background-position:0% 90%}
+        50%{background-position:100% 11%}
+        100%{background-position:0% 90%}
+      }
+      @-moz-keyframes AnimationName {
+        0%{background-position:0% 90%}
+        50%{background-position:100% 11%}
+        100%{background-position:0% 90%}
+      }
+      @keyframes AnimationName {
+        0%{background-position:0% 90%}
+        50%{background-position:100% 11%}
+        100%{background-position:0% 90%}
+      }
+    }
+  </style>
 </html>

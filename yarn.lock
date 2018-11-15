@@ -6409,6 +6409,11 @@ querystringify@^2.0.0:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.0.tgz#7ded8dfbf7879dcc60d0a644ac6754b283ad17ef"
   integrity sha512-sluvZZ1YiTLD5jsqZcDmFyV2EwToyXZBfpoVOmktMmW+VEnhgakFHnasVph65fOjGPTWN0Nw3+XQaSeMayr0kg==
 
+rainbowvis.js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rainbowvis.js/-/rainbowvis.js-1.0.1.tgz#e8998fb97161b02557748c7da097962b0d6e3e00"
+  integrity sha1-6JmPuXFhsCVXdIx9oJeWKw1uPgA=
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.0.6.tgz#d302c522948588848a8d300c932b44c24231da80"

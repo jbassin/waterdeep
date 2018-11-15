@@ -2,7 +2,7 @@
   <div class="container has-text-centered animated fadeInDown">
     <div class="notification is-primary">
       <p class="title is-1">
-        Waterdeep: The Mad Mage's Keys
+        Waterdeep: Keys of the Mad Mage
       </p>
     </div>
   </div>

@@ -24,6 +24,6 @@ export default {
 
 <style scoped>
   .separated {
-    margin-top: 30px;
+    margin-top: 10px;
   }
 </style>

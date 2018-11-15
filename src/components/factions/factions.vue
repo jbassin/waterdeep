@@ -1,6 +1,9 @@
 <template>
   <div class="container animated fadeInRight">
     <div class="notification is-primary">
+      <p class="title is-4">
+        Faction Reputations
+      </p>
       <div class="tile is-ancestor"
            v-for="(faction, index) in sortedFactions"
            :key="index">

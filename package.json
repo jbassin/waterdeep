@@ -13,6 +13,7 @@
     "bulmaswatch": "^0.7.2",
     "fs-extra": "^7.0.1",
     "lodash": "^4.17.11",
+    "rainbowvis.js": "^1.0.1",
     "vue": "^2.5.17",
     "vue-observe-visibility": "^0.4.3",
     "vue-router": "^3.0.1",
