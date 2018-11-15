@@ -11,6 +11,8 @@
     "@fortawesome/fontawesome-free": "^5.5.0",
     "animate.css": "^3.7.0",
     "bulmaswatch": "^0.7.2",
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11",
     "vue": "^2.5.17",
     "vue-observe-visibility": "^0.4.3",
     "vue-router": "^3.0.1",

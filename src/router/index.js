@@ -1,6 +1,9 @@
 import Vue from 'vue';
+import _ from 'lodash';
 import Router from 'vue-router';
 import Index from '../views/Index.vue';
+
+Object.defineProperty(Vue.prototype, '$_', { value: _ });
 
 Vue.use(Router);
 
