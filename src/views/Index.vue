@@ -1,16 +1,18 @@
 <template>
   <div>
     <ccTavern class="separated"/>
+    <ccFactions class="separated"/>
   </div>
 </template>
 
 <script>
 import ccTavern from '../components/tavern/tavern.vue';
+import ccFactions from '../components/factions/factions.vue';
 
 export default {
   name: 'index',
   components: {
-    ccTavern,
+    ccTavern, ccFactions,
   },
   computed: {
     isActive() {
@@ -22,6 +24,6 @@ export default {
 
 <style scoped>
   .separated {
-    margin-top: 40px;
+    margin-top: 30px;
   }
 </style>
