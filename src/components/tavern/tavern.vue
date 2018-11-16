@@ -62,7 +62,9 @@
             </tbody>
           </table>
           <br>
-          Currently looking {{ status }}.
+          <div class="has-text-centered">
+            Currently looking {{ status }}.
+          </div>
         </div>
       </div>
     </div>
