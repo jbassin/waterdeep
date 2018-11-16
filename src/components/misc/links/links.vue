@@ -23,6 +23,13 @@
             The Story So Far
           </a>
         </div>
+        <div class="level-item">
+          <a class="button"
+             :class="[pathfinder === 'undermountain' ? 'is-light' : 'is-primary']"
+             @click="goto('undermountain')">
+            The Undermountain
+          </a>
+        </div>
       </nav>
     </div>
   </div>

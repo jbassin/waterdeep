@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import ccTavern from '../components/tavern/tavern.vue';
 import ccFactions from '../components/factions/factions.vue';
 import ccRecap from '../components/recap/recap.vue';
+import ccUndermountain from '../components/undermountain/undermountain.vue';
 
 Object.defineProperty(Vue.prototype, '$_', { value: _ });
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/recap',
       name: 'recap',
       component: ccRecap,
+    },
+    {
+      path: '/undermountain',
+      name: 'undermountain',
+      component: ccUndermountain,
     },
   ],
 });
