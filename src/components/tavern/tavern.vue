@@ -1,5 +1,5 @@
 <template>
-  <div class="container animated fadeInLeft">
+  <div class="container animated fadeIn">
     <div class="notification is-primary">
       <p class="title is-4">
         {{ tavern.name }}: Status Report
@@ -156,10 +156,8 @@ export default {
 </script>
 
 <style scoped>
-  .column-left {
-    border-right: 1px solid white;
-  }
-  .column-right {
-    border-left: 1px solid white;
+  .column {
+    border-right: 0.5px solid white;
+    border-left: 0.5px solid white;
   }
 </style>

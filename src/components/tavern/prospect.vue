@@ -5,7 +5,7 @@
     </td>
     <td class="has-text-right">
       <span :style="color">
-        {{ prospect.value >= 0 ? '+' : '-' }}
+        {{ (prospect.value >= 0 ? '+' : '-').repeat(Math.floor(Math.abs(prospect.value) / 5) + 1) }}
       </span>
     </td>
   </tr>

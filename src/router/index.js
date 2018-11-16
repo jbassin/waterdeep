@@ -15,8 +15,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: ccTavern,
+      redirect: '/tavern',
     },
     {
       path: '/tavern',

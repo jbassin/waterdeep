@@ -1,5 +1,5 @@
 <template>
-  <div class="container animated fadeInLeft">
+  <div class="container animated fadeIn">
     <div class="notification is-primary">
       <p class="title is-4">
         The Story So Far:
