@@ -3,14 +3,11 @@
     <div class="message-header"
          @click="expanded = !expanded">
       <p>{{ date }}</p>
-      <a class="button is-link"
-         @click="expanded = !expanded">
-        <span class="icon">
-          <i :class="[expanded ?
-                      'fas fa-arrow-up' :
-                      'fas fa-arrow-down']"></i>
-        </span>
-      </a>
+      <span class="icon">
+        <i :class="[expanded ?
+                    'fas fa-arrow-up' :
+                    'fas fa-arrow-down']"></i>
+      </span>
     </div>
     <div class="message-body animated fadeIn"
          v-if="expanded">
