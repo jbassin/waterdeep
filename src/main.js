@@ -10,6 +10,7 @@ import store from './store';
 Vue.directive('observe-visibility', ObserveVisibility);
 Object.defineProperty(Vue.prototype, '$_', { value: _ });
 Vue.use(VueCytoscape);
+
 Vue.config.productionTip = false;
 
 new Vue({
