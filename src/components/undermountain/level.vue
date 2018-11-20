@@ -3,8 +3,7 @@
     <div class="message-header"
          @click="open">
       <p>{{ level.locked ? `Level ${index + 1}` : level.name }}</p>
-      <a class="button is-info"
-         @click="open">
+      <a class="is-info">
         <span class="icon animated"
               :class="[shake]">
           <i :class="[level.locked ?

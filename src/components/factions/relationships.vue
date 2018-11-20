@@ -28,16 +28,26 @@ export default {
           {
             selector: 'node',
             style: {
-              'background-color': '#fff',
+              'background-color': '#88D1CB',
+              'text-valign': 'center',
+              color: '#88D1CB',
+              'text-outline-width': 1,
+              'text-outline-color': '#000',
+              'text-wrap': 'wrap',
+              'text-max-width': 175,
               label: 'data(id)',
+            },
+          }, {
+            selector: ':parent',
+            style: {
+              'text-valign': 'top',
+              'background-opacity': 0.333,
             },
           }, {
             selector: 'edge',
             style: {
               width: 3,
-              'line-color': '#fff',
-              'target-arrow-color': '#ccc',
-              'target-arrow-shape': 'triangle',
+              'line-color': '#88D1CB',
             },
           },
         ],
@@ -59,10 +69,17 @@ export default {
     loadRelationshipsFromDisk() {
       const cynodes = [];
       const cylinks = [];
+      const cygroups = [];
       this.$_.each(require('../../data/relationships.json'), (person) => {
+        cygroups.push({
+          data: {
+            id: person.faction,
+          },
+        });
         cynodes.push({
           data: {
             id: person.name,
+            parent: person.faction,
           },
         });
         this.$_.each(person.relationships, (relation) => {
@@ -78,14 +95,21 @@ export default {
       this.$cytoscape.instance.then((graph) => {
         graph.remove(graph.elements());
         graph.reset();
+        graph.add(cygroups);
         graph.add(cynodes);
         graph.add(cylinks);
         graph.layout({
           name: 'cose-bilkent',
+          refresh: 20,
+          numIter: 1000,
+          randomize: false,
+          animate: false,
           fit: true,
           padding: 5,
           avoidOverlap: true,
           nodeDimensionsIncludeLabels: true,
+          gravity: 1.8,
+          idealEdgeLength: 25,
         }).run();
         const that = this;
         graph.on('tap', (evt) => {

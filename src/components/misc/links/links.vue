@@ -9,13 +9,13 @@
             Tavern Status
           </a>
         </div>
-        <div class="level-item">
-          <a class="button"
-             :class="[pathfinder === 'relationships' ? 'is-light' : 'is-primary']"
-             @click="goto('relationships')">
-            Relationships
-          </a>
-        </div>
+        <!--<div class="level-item">-->
+          <!--<a class="button"-->
+             <!--:class="[pathfinder === 'relationships' ? 'is-light' : 'is-primary']"-->
+             <!--@click="goto('relationships')">-->
+            <!--Relationships-->
+          <!--</a>-->
+        <!--</div>-->
         <div class="level-item">
           <a class="button"
              :class="[pathfinder === 'reputations' ? 'is-light' : 'is-primary']"
