@@ -4,37 +4,44 @@
       <nav class="level">
         <div class="level-item">
           <a class="button"
-             :class="[pathfinder === 'tavern' ? 'is-light' : 'is-primary']"
-             @click="goto('tavern')">
+             :class="[pathfinder === '/tavern' ? 'is-light' : 'is-primary']"
+             @click="goto('/tavern')">
             Tavern Status
           </a>
         </div>
         <!--<div class="level-item">-->
           <!--<a class="button"-->
-             <!--:class="[pathfinder === 'relationships' ? 'is-light' : 'is-primary']"-->
-             <!--@click="goto('relationships')">-->
+             <!--:class="[pathfinder === '/relationships' ? 'is-light' : 'is-primary']"-->
+             <!--@click="goto('/relationships')">-->
             <!--Relationships-->
           <!--</a>-->
         <!--</div>-->
         <div class="level-item">
           <a class="button"
-             :class="[pathfinder === 'reputations' ? 'is-light' : 'is-primary']"
-             @click="goto('reputations')">
+             :class="[pathfinder === '/reputations' ? 'is-light' : 'is-primary']"
+             @click="goto('/reputations')">
             Faction Reputations
           </a>
         </div>
         <div class="level-item">
           <a class="button"
-             :class="[pathfinder === 'recap' ? 'is-light' : 'is-primary']"
-             @click="goto('recap')">
+             :class="[pathfinder === '/recap' ? 'is-light' : 'is-primary']"
+             @click="goto('/recap')">
             The Story So Far
           </a>
         </div>
         <div class="level-item">
           <a class="button"
-             :class="[pathfinder === 'undermountain' ? 'is-light' : 'is-primary']"
-             @click="goto('undermountain')">
+             :class="[pathfinder === '/undermountain' ? 'is-light' : 'is-primary']"
+             @click="goto('/undermountain')">
             The Undermountain
+          </a>
+        </div>
+        <div class="level-item">
+          <a class="button"
+             :class="[pathfinder === '/encyclopedia' ? 'is-light' : 'is-primary']"
+             @click="goto('/encyclopedia/index')">
+            Encyclopedia
           </a>
         </div>
       </nav>
@@ -47,7 +54,7 @@ export default {
   name: 'ccLinks',
   data() {
     return {
-      currentTab: 'tavern',
+      currentTab: this.$router.currentRoute.name,
     };
   },
   methods: {
@@ -61,6 +68,11 @@ export default {
   computed: {
     pathfinder() {
       return this.currentTab;
+    },
+  },
+  watch: {
+    $route(to) {
+      this.currentTab = to.name;
     },
   },
 };

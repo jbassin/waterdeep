@@ -2,7 +2,7 @@
   <div id="app">
     <ccHeader class="spaced"/>
     <ccLinks class="spaced"/>
-    <router-view/>
+    <router-view class="footer-spaced"/>
   </div>
 </template>
 
@@ -42,5 +42,8 @@ export default {
 
   .spaced {
     margin-bottom: 10px;
+  }
+  .footer-spaced {
+    margin-bottom: 45px;
   }
 </style>
