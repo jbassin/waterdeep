@@ -51,7 +51,7 @@ export default {
         case (value < 50):
           return 'is-warning';
         case (value < 75):
-          return 'is-link';
+          return 'is-info';
         default:
           return 'is-success';
       }
