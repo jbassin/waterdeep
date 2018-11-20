@@ -20,6 +20,11 @@
         <img :src="level.image">
       </figure>
       <br>
+      <i>{{ level.flavor.text }}</i>
+      <div class="has-text-right">
+        <i>-- {{ level.flavor.author }}</i>
+      </div>
+      <br>
       {{ level.text }}
     </div>
   </article>
