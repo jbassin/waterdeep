@@ -16,7 +16,8 @@
             </div>
           </div>
         </nav>
-
+        <ccEntry :current-route="currentRoute"
+                 :current-entry="currentEntry"/>
       </div>
     </keep-alive>
   </div>
@@ -25,19 +26,73 @@
 <script>
 /* eslint-disable no-underscore-dangle */
 import ccBreadcrumb from './breadcrumb.vue';
+import ccEntry from './entry.vue';
 
 export default {
   name: 'ccEncyclopedia',
   components: {
-    ccBreadcrumb,
+    ccBreadcrumb, ccEntry,
+  },
+  data() {
+    return {
+      info: [],
+    };
+  },
+  methods: {
+    loadEncyclopediaFromDisk() {
+      const info = require('../../data/encyclopedia.json');
+      const formattedInfo = [];
+      this.$_.each(info, (page, pageIndex) => {
+        formattedInfo.push(page);
+        this.$_.each(page.entry, (entry, entryIndex) => {
+          const entryArray = [];
+          this.$_.each(entry.text.split('|'), (text) => {
+            switch (text.charAt(0)) {
+              case '@':
+                entryArray.push({
+                  type: 'link',
+                  text: text.substr(1),
+                });
+                break;
+              case '*':
+                entryArray.push({
+                  type: 'bold',
+                  text: text.substr(1),
+                });
+                break;
+              case '_':
+                entryArray.push({
+                  type: 'italics',
+                  text: text.substr(1),
+                });
+                break;
+              case '%':
+                entryArray.push({
+                  type: 'obfuscated',
+                  text: text.substr(1),
+                });
+                break;
+              default:
+                entryArray.push({
+                  type: 'normal',
+                  text,
+                });
+                break;
+            }
+          });
+          formattedInfo[pageIndex].entry[entryIndex].text = entryArray;
+        });
+      });
+      this.info = formattedInfo;
+    },
   },
   computed: {
     currentRoute() {
       const routeArray = [];
       this.$_.each(this.$route.params['0'] ? this.$route.params['0'].split('/') : ['index'], (item, index) => {
         routeArray.push({
-          header: item,
-          path: routeArray[index - 1] ? `${routeArray[index - 1].path}/${item}` : `/${item}`,
+          header: item.toLowerCase(),
+          path: routeArray[index - 1] ? `${routeArray[index - 1].path}/${item.toLowerCase()}` : `/${item.toLowerCase()}`,
           isActive: false,
         });
       });
@@ -47,6 +102,9 @@ export default {
     currentEntry() {
       return this.currentRoute.slice(-1)[0].header;
     },
+  },
+  created() {
+    this.loadEncyclopediaFromDisk();
   },
 };
 </script>
