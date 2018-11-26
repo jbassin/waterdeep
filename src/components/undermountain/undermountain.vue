@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import LevelsApi from '../../services/levels';
 import ccLevel from './level.vue';
 
 export default {
@@ -26,8 +27,9 @@ export default {
     };
   },
   methods: {
-    loadUndermountainFromDisk() {
-      this.undermountain = require('../../data/undermountain.json');
+    async loadUndermountainFromDisk() {
+      const response = await LevelsApi.fetchLevels();
+      this.undermountain = response.data.levels;
     },
   },
   created() {
