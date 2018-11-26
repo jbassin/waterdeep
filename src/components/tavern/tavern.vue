@@ -9,9 +9,9 @@
           <p class="subtitle is-5">
             Currently Hired Employees:
           </p>
-          <p v-for="(name, job) in tavern.employees"
-             :key="name">
-            <strong>{{ job }}</strong>: {{ name }}
+          <p v-for="(employee, index) in tavern.employees"
+             :key="index">
+            <strong>{{ employee.job }}</strong>: {{ employee.name }}
           </p>
         </div>
         <div class="column is-one-third">
@@ -20,14 +20,14 @@
           </p>
           <table class="table is-fullwidth">
             <tbody class="has-background-primary has-text-white">
-              <tr v-for="(fee, reason) in tavern.moneyflow"
-                  :key="reason">
+              <tr v-for="(moneyflow, index) in tavern.moneyflow"
+                  :key="index">
                 <td>
-                  {{ reason }}
+                  {{ moneyflow.text }}
                 </td>
                 <td class="has-text-right">
-                  <span :class="[fee >= 0 ? 'has-text-success' : 'has-text-danger']">
-                    {{ fee }}
+                  <span :class="[moneyflow.value >= 0 ? 'has-text-success' : 'has-text-danger']">
+                    {{ moneyflow.value }}
                   </span>
                   dr
                 </td>
@@ -73,6 +73,7 @@
 
 <script>
 /* eslint-disable no-underscore-dangle */
+import TavernApi from '../../services/tavern';
 import ccProspect from './prospect.vue';
 
 export default {
@@ -86,15 +87,23 @@ export default {
     };
   },
   methods: {
-    loadTavernFromDisk() {
-      this.tavern = require('../../data/tavern.json');
+    async loadTavernFromDisk() {
+      const employees = await TavernApi.fetchEmployees();
+      const moneyflow = await TavernApi.fetchMoneyflows();
+      const prospects = await TavernApi.fetchProspects();
+      this.tavern = {
+        name: 'The Floating Cup',
+        employees: employees.data.employees,
+        moneyflow: moneyflow.data.moneyflow,
+        prospects: prospects.data.prospects,
+      };
     },
   },
   computed: {
     totalCost() {
       let total = 0;
-      this.$_.each(this.tavern.moneyflow, (value) => {
-        total += value;
+      this.$_.each(this.tavern.moneyflow, (moneyflow) => {
+        total += moneyflow.value;
       });
       return total;
     },
