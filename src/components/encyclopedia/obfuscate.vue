@@ -1,7 +1,5 @@
 <template>
-  <span class="monospace">
-    {{ output }}
-  </span>
+  <span class="monospace">{{ output }}</span>
 </template>
 
 <script>

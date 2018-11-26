@@ -13,10 +13,12 @@
           <p class="subtitle is-5">
             {{ paragraph.title }}
           </p>
-          <ccSegment v-for="(segment, segmentIndex) in paragraph.text"
-                     :key="segmentIndex"
-                     :segment="segment"
-                     class="subtitle is-6 margin-hack"/>
+          <div class="margin-hack-parent">
+            <ccSegment v-for="(segment, segmentIndex) in paragraph.text"
+                       :key="segmentIndex"
+                       :segment="segment"
+                       class="subtitle is-6 margin-hack"/>
+          </div>
         </div>
         <br><br>
       </div>
@@ -42,5 +44,7 @@ export default {
 <style scoped>
   .margin-hack {
     display: inline;
+    margin: 0;
+    padding: 0;
   }
 </style>
