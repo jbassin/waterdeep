@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import RecapsApi from '../../services/recaps';
 import ccEntry from './entry.vue';
 
 export default {
@@ -27,9 +28,26 @@ export default {
     };
   },
   methods: {
-    loadRecapFromDisk() {
-      this.calendar = require('../../data/recap.json').calendar;
-      this.entries = require('../../data/recap.json').entries;
+    async loadRecapFromDisk() {
+      this.calendar = {
+        months: [
+          'Dawn',
+          'Starfall',
+          'Windswrath',
+          'Rainswrath',
+          'Skyrest',
+          'Midyear',
+          'Heatswrath',
+          'Sicklefall',
+          'Deepsun',
+          'Harvest',
+          'Dusk',
+          'Godsnight',
+        ],
+        year: 896,
+      };
+      const response = await RecapsApi.fetchRecaps();
+      this.entries = response.data.recaps;
     },
   },
   created() {
