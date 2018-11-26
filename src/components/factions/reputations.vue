@@ -32,6 +32,7 @@
 
 <script>
 /* eslint-disable no-underscore-dangle */
+import FactionsApi from '../../services/factions';
 
 export default {
   name: 'ccReputations',
@@ -41,8 +42,9 @@ export default {
     };
   },
   methods: {
-    loadFactionsFromDisk() {
-      this.factions = require('../../data/factions.json');
+    async loadFactionsFromDisk() {
+      const response = await FactionsApi.fetchFactions();
+      this.factions = response.data.factions;
     },
     setProgressColor(value) {
       switch (true) {
