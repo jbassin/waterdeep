@@ -1,25 +1,23 @@
 <template>
   <div class="container animated fadeIn">
-    <keep-alive>
-      <div class="notification is-primary">
-        <nav class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <p class="title is-4">
-                Encyclopedia
-              </p>
-            </div>
+    <div class="notification is-primary">
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <p class="title is-4">
+              Encyclopedia
+            </p>
           </div>
-          <div class="level-right">
-            <div class="level-item">
-              <ccBreadcrumb :current-route="currentRoute"></ccBreadcrumb>
-            </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <ccBreadcrumb :current-route="currentRoute"></ccBreadcrumb>
           </div>
-        </nav>
-        <ccEntry :current-route="currentRoute"
-                 :current-entry="currentEntry"/>
-      </div>
-    </keep-alive>
+        </div>
+      </nav>
+      <ccEntry :current-route="currentRoute"
+               :current-entry="currentEntry"/>
+    </div>
   </div>
 </template>
 
@@ -100,7 +98,14 @@ export default {
       return routeArray;
     },
     currentEntry() {
-      return this.currentRoute.slice(-1)[0].header;
+      let returnVal = null;
+      const { header } = this.currentRoute.slice(-1)[0];
+      this.$_.each(this.info, (entry) => {
+        if (entry.title.toLowerCase().replace(/ /g, '_') === header.toLowerCase().replace(/ /g, '_')) {
+          returnVal = entry;
+        }
+      });
+      return returnVal;
     },
   },
   created() {
