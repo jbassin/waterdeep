@@ -1,32 +1,30 @@
 <template>
-  <div class="columns">
-    <div class="column is-4">
-    </div>
-    <div class="column notification is-dark">
-      <p class="title is-4 has-text-centered">
-        {{ currentEntry.title.charAt(0).toUpperCase() + currentEntry.title.slice(1).toLowerCase() }}
-      </p>
-      <div v-for="(paragraph, paragraphIndex) in currentEntry.entry"
-           :key="paragraphIndex">
-        <div v-if="paragraph.visible"
-             class="no-whitespace">
-          <p class="subtitle is-5">
-            {{ paragraph.title }}
-          </p>
-          <div class="margin-hack-parent">
-            <ccSegment v-for="(segment, segmentIndex) in paragraph.text"
-                       :key="segmentIndex"
-                       :segment="segment"
-                       class="subtitle is-6 margin-hack"/>
-          </div>
+  <div>
+    <p class="title is-4 has-text-centered">
+      {{ title }}
+    </p>
+    <div v-for="(paragraph, paragraphIndex) in currentEntry.entry"
+         :key="paragraphIndex"
+         class="horizontal-rule">
+      <div v-if="paragraph.visible"
+           class="no-whitespace">
+        <p class="subtitle is-5"
+           v-if="paragraph.title !== ' '">
+          {{ paragraph.title }}
+        </p>
+        <div class="margin-hack-parent">
+          <ccSegment v-for="(segment, segmentIndex) in paragraph.text"
+                     :key="segmentIndex"
+                     :segment="segment"
+                     class="subtitle is-6 margin-hack"/>
         </div>
-        <br><br>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable no-underscore-dangle */
 import ccSegment from './segment.vue';
 
 export default {
@@ -38,6 +36,15 @@ export default {
     currentRoute: { required: true },
     currentEntry: { required: true },
   },
+  computed: {
+    title() {
+      const returnTitle = [];
+      this.$_.each(this.currentEntry.title.split(' '), (item) => {
+        returnTitle.push(item.charAt(0).toUpperCase() + item.slice(1).toLowerCase());
+      });
+      return returnTitle.join(' ');
+    },
+  },
 };
 </script>
 
@@ -46,5 +53,11 @@ export default {
     display: inline;
     margin: 0;
     padding: 0;
+  }
+  .horizontal-rule {
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 </style>

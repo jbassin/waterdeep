@@ -18,6 +18,7 @@
     "granim": "^2.0.0",
     "lodash": "^4.17.11",
     "rainbowvis.js": "^1.0.1",
+    "string-similarity": "^2.0.0",
     "vue": "^2.5.17",
     "vue-cytoscape": "^0.1.2",
     "vue-observe-visibility": "^0.4.3",
