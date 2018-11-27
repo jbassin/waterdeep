@@ -115,6 +115,7 @@ export default {
           return false;
         case 'index':
         case 'bestiary':
+        case 'trollskull alley':
           return true;
       }
     },
