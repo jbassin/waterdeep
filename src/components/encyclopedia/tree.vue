@@ -29,13 +29,14 @@ export default {
   methods: {
     async createTree() {
       const response = await EntryApi.fetchEntryList();
-      const entries = [];
+      let entries = [];
       this.$_.each(response.data.entries, (entry) => {
         entries.push({
           title: entry.title,
           parent: entry.parent,
         });
       });
+      entries = this.$_.sortBy(entries, 'title');
       this.tree = {
         title: this.root,
         children: this.getChildren(entries, this.root),
