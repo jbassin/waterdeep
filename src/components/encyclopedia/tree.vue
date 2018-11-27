@@ -1,7 +1,8 @@
 <template>
   <div v-if="loaded"
        class="content">
-    <ccBranch :item="tree"/>
+    <ccBranch :item="tree"
+              :path="rootPath"/>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
   },
   props: {
     root: { default: 'index' },
+    rootPath: { default: '/encyclopedia/index' },
   },
   data() {
     return {

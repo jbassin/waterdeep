@@ -36,6 +36,7 @@
         <ccEntry :current-route="currentRoute()"
                  :current-entry="info"/>
         <ccTree :root="info.title"
+                :root-path="`/encyclopedia${currentRoute().slice(-1)[0].path}`"
                 v-if="info.title === 'index'"/>
       </div>
     </div>

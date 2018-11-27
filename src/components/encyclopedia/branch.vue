@@ -1,11 +1,14 @@
 <template>
  <ul>
    <li>
-     {{ item.title }}
+     <a @click="go">
+       {{ item.title }}
+     </a>
    </li>
    <ccBranch v-for="(child, index) in item.children"
              :key="index"
-             :item="child"/>
+             :item="child"
+             :path="`${path}/${child.title.replace(/ /g, '_')}`"/>
  </ul>
 </template>
 
@@ -14,6 +17,14 @@ export default {
   name: 'ccBranch',
   props: {
     item: Object,
+    path: String,
+  },
+  methods: {
+    go() {
+      this.$router.replace({
+        path: this.path,
+      });
+    },
   },
 };
 </script>
