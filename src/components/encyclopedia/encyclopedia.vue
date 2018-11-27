@@ -37,7 +37,7 @@
                  :current-entry="info"/>
         <ccTree :root="info.title"
                 :root-path="`/encyclopedia${currentRoute().slice(-1)[0].path}`"
-                v-if="info.title === 'index'"/>
+                v-if="showTree"/>
       </div>
     </div>
   </div>
@@ -107,6 +107,15 @@ export default {
           path: `/encyclopedia${currentPathArray.reverse().join('/')}`,
         });
         this.search = '';
+      }
+    },
+    showTree() {
+      switch (this.info.title) {
+        case 'index':
+        case 'bestiary':
+          return true;
+        default:
+          return false;
       }
     },
   },
