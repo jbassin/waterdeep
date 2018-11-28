@@ -32,7 +32,8 @@
           </div>
         </div>
       </nav>
-      <div class="notification is-dark">
+      <div class="notification is-dark"
+           v-if="state === 'normal'">
         <ccEntry :current-route="currentRoute()"
                  :current-entry="info"/>
         <ccTree :root="info.title"
@@ -125,6 +126,19 @@ export default {
     await this.loadEncyclopediaFromDisk();
     this.loaded = true;
   },
+  computed: {
+    state() {
+      return this.$store.state.theme_change.currentState;
+    },
+    color() {
+      switch (this.state) {
+        default:
+          return 'is-primary';
+        case 'skullport':
+          return 'is-danger skullport';
+      }
+    },
+  },
   watch: {
     async $route() {
       this.loaded = false;
@@ -136,5 +150,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .skullport {
+    font-family: 'Righteous', cursive;
+  }
 </style>

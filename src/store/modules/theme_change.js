@@ -1,19 +1,19 @@
 /* eslint-disable no-param-reassign */
 const state = {
-  activeTab: 'tavern',
+  currentState: 'normal',
 };
 
 const mutations = {
-  SET_ACTIVE_TAB: (store, payload) => {
-    store.activeTab = payload.tab;
+  SET_STATE: (store, payload) => {
+    store.currentState = payload.state;
   },
 };
 
 const actions = {
-  setActiveTab: (context, payload) => {
+  setState: (context, payload) => {
     context.commit({
-      type: 'SET_ACTIVE_TAB',
-      tab: payload.tab,
+      type: 'SET_STATE',
+      state: payload.state,
     });
   },
 };

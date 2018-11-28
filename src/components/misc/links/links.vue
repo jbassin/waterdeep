@@ -1,10 +1,11 @@
 <template>
   <div class="container has-text-centered animated fadeInDown">
-    <div class="notification is-primary">
+    <div class="notification"
+         :class="color">
       <nav class="level">
         <div class="level-item">
-          <a class="button"
-             :class="[pathfinder === '/tavern' ? 'is-light' : 'is-primary']"
+          <a class="button is-rounded"
+             :class="[tab === '/tavern' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/tavern')">
             Tavern Status
           </a>
@@ -17,29 +18,29 @@
           <!--</a>-->
         <!--</div>-->
         <div class="level-item">
-          <a class="button"
-             :class="[pathfinder === '/reputations' ? 'is-light' : 'is-primary']"
+          <a class="button is-rounded"
+             :class="[tab === '/reputations' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/reputations')">
             Faction Reputations
           </a>
         </div>
         <div class="level-item">
-          <a class="button"
-             :class="[pathfinder === '/recap' ? 'is-light' : 'is-primary']"
+          <a class="button is-rounded"
+             :class="[tab === '/recap' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/recap')">
             The Story So Far
           </a>
         </div>
         <div class="level-item">
-          <a class="button"
-             :class="[pathfinder === '/undermountain' ? 'is-light' : 'is-primary']"
+          <a class="button is-rounded"
+             :class="[tab === '/undermountain' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/undermountain')">
             The Undermountain
           </a>
         </div>
         <div class="level-item">
-          <a class="button"
-             :class="[pathfinder === '/encyclopedia' ? 'is-light' : 'is-primary']"
+          <a class="button is-rounded"
+             :class="[tab === '/encyclopedia' ? selectedColor : color]"
              @click="goto('/encyclopedia/index')">
             Encyclopedia
           </a>
@@ -52,11 +53,6 @@
 <script>
 export default {
   name: 'ccLinks',
-  data() {
-    return {
-      currentTab: this.$router.currentRoute.name,
-    };
-  },
   methods: {
     goto(path) {
       this.currentTab = path;
@@ -66,18 +62,36 @@ export default {
     },
   },
   computed: {
-    pathfinder() {
-      return this.currentTab;
+    tab() {
+      return `/${this.$store.state.global_information.activeTab}`;
+    },
+    state() {
+      return this.$store.state.theme_change.currentState;
+    },
+    color() {
+      switch (this.state) {
+        default:
+          return 'is-primary';
+        case 'skullport':
+          return 'is-danger skullport has-text-warning';
+      }
+    },
+    selectedColor() {
+      switch (this.state) {
+        default:
+          return 'has-background-light has-text-dark';
+        case 'skullport':
+          return 'has-background-warning has-text-danger';
+      }
     },
   },
   watch: {
-    $route(to) {
-      this.currentTab = to.name;
-    },
   },
 };
 </script>
 
 <style scoped>
-
+  .skullport {
+    font-family: 'Righteous', cursive;
+  }
 </style>
