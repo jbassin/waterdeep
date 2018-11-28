@@ -5,7 +5,7 @@
     </p>
     <div v-for="(paragraph, paragraphIndex) in currentEntry.entry"
          :key="paragraphIndex"
-         class="horizontal-rule">
+         :class="color">
       <div v-if="paragraph.visible"
            class="no-whitespace">
         <p class="subtitle is-5"
@@ -44,6 +44,17 @@ export default {
       });
       return returnTitle.join(' ');
     },
+    state() {
+      return this.$store.state.theme_change.currentState;
+    },
+    color() {
+      switch (this.state) {
+        default:
+          return 'horizontal-rule';
+        case 'skullport':
+          return 'skullport-horizontal-rule';
+      }
+    },
   },
 };
 </script>
@@ -57,6 +68,12 @@ export default {
   .horizontal-rule {
     border: 0;
     border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  .skullport-horizontal-rule {
+    border: 0;
+    border-bottom: 1px solid #FDD555;
     padding-bottom: 10px;
     padding-top: 10px;
   }

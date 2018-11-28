@@ -4,7 +4,8 @@
       <li v-for="(path, index) in currentRoute"
           :key="index"
           :class="{ 'is-active': path.isActive }">
-        <a @click="go(path.path)">
+        <a @click="go(path.path)"
+           :class="color">
           {{ path.header }}
         </a>
       </li>
@@ -23,6 +24,19 @@ export default {
       this.$router.replace({
         path: `/encyclopedia${path}`,
       });
+    },
+  },
+  computed: {
+    state() {
+      return this.$store.state.theme_change.currentState;
+    },
+    color() {
+      switch (this.state) {
+        default:
+          return '';
+        case 'skullport':
+          return 'has-text-warning';
+      }
     },
   },
 };

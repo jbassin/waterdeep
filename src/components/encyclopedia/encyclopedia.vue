@@ -1,6 +1,7 @@
 <template>
   <div class="container animated fadeIn">
-    <div class="notification is-primary"
+    <div class="notification "
+         :class="color"
          v-if="loaded">
       <div class="has-text-centered">
         <p class="title is-4">
@@ -12,7 +13,8 @@
           <div class="level-item">
             <div class="field">
               <p class="control has-icons-left">
-                <input class="input is-rounded has-background-dark has-text-light"
+                <input class="input is-rounded"
+                       :class="searchColor"
                        type="search"
                        placeholder="search"
                        v-model="search"
@@ -32,8 +34,8 @@
           </div>
         </div>
       </nav>
-      <div class="notification is-dark"
-           v-if="state === 'normal'">
+      <div class="notification"
+           :class="notificationColor">
         <ccEntry :current-route="currentRoute()"
                  :current-entry="info"/>
         <ccTree :root="info.title"
@@ -135,7 +137,23 @@ export default {
         default:
           return 'is-primary';
         case 'skullport':
-          return 'is-danger skullport';
+          return 'is-danger skullport has-text-warning';
+      }
+    },
+    notificationColor() {
+      switch (this.state) {
+        default:
+          return 'is-dark';
+        case 'skullport':
+          return 'is-danger-darker skullport has-text-warning';
+      }
+    },
+    searchColor() {
+      switch (this.state) {
+        default:
+          return 'has-background-dark has-text-light';
+        case 'skullport':
+          return 'is-danger-darker skullport has-text-warning';
       }
     },
   },
@@ -152,5 +170,8 @@ export default {
 <style scoped>
   .skullport {
     font-family: 'Righteous', cursive;
+  }
+  .is-danger-darker {
+    background-color: #a72925;
   }
 </style>

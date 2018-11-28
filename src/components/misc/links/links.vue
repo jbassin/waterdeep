@@ -7,7 +7,7 @@
           <a class="button is-rounded"
              :class="[tab === '/tavern' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/tavern')">
-            Tavern Status
+            {{ tabNames.tavern }}
           </a>
         </div>
         <!--<div class="level-item">-->
@@ -21,28 +21,28 @@
           <a class="button is-rounded"
              :class="[tab === '/reputations' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/reputations')">
-            Faction Reputations
+            {{ tabNames.faction }}
           </a>
         </div>
         <div class="level-item">
           <a class="button is-rounded"
              :class="[tab === '/recap' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/recap')">
-            The Story So Far
+            {{ tabNames.recap }}
           </a>
         </div>
         <div class="level-item">
           <a class="button is-rounded"
              :class="[tab === '/undermountain' ? 'has-background-light has-text-dark' : color]"
              @click="goto('/undermountain')">
-            The Undermountain
+            {{ tabNames.undermountain }}
           </a>
         </div>
         <div class="level-item">
           <a class="button is-rounded"
              :class="[tab === '/encyclopedia' ? selectedColor : color]"
              @click="goto('/encyclopedia/index')">
-            Encyclopedia
+            {{ tabNames.encyclopedia }}
           </a>
         </div>
       </nav>
@@ -82,6 +82,26 @@ export default {
           return 'has-background-light has-text-dark';
         case 'skullport':
           return 'has-background-warning has-text-danger';
+      }
+    },
+    tabNames() {
+      switch (this.state) {
+        default:
+          return {
+            tavern: 'Tavern Status',
+            faction: 'Faction Reputations',
+            recap: 'The Story So Far',
+            undermountain: 'The Undermountain',
+            encyclopedia: 'Encyclopedia',
+          };
+        case 'skullport':
+          return {
+            tavern: 'Pitiful Alehouse',
+            faction: 'Petty Squabbles',
+            recap: 'Unnecessary Details',
+            undermountain: 'The Scourge\'s Source',
+            encyclopedia: 'Grand Font of Knowledge',
+          };
       }
     },
   },

@@ -3,13 +3,12 @@
     <ccHeader class="spaced"/>
     <ccLinks class="spaced"/>
     <router-view class="footer-spaced"/>
+    <p v-show="false">{{ backgroundChange }}</p>
   </div>
 </template>
 
 <script>
-/* eslint-disable no-unused-vars,no-underscore-dangle */
-import Granim from 'granim';
-
+/* eslint-disable no-unused-vars,no-underscore-dangle,vue/no-side-effects-in-computed-properties */
 import ccHeader from './components/misc/header/header.vue';
 import ccLinks from './components/misc/links/links.vue';
 
@@ -45,24 +44,24 @@ export default {
           }
         });
     });
-    const granimInstance = new Granim({
-      element: '#gradient-background',
-      direction: 'radial',
-      isPausedWhenNotInView: true,
-      states: {
-        'default-state': {
-          gradients: [
-            ['#f2f2f2', '#a6a6a6'],
-            ['#cccccc', '#f2f2f2'],
-            ['#a6a6a6', '#f2f2f2'],
-          ],
-        },
-      },
-    });
   },
   computed: {
     state() {
       return this.$store.state.theme_change.currentState;
+    },
+    backgroundChange() {
+      const st = this.state;
+      switch (st) {
+        default:
+          this.$granim.changeState('default-state');
+          this.$granim.changeDirection('radial');
+          break;
+        case 'skullport':
+          this.$granim.changeState('skullport-state');
+          this.$granim.changeDirection('radial');
+          break;
+      }
+      return st;
     },
   },
 };
