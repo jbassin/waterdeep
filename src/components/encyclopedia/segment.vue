@@ -1,5 +1,5 @@
 <template>
-  <div v-if="segment.type === 'link'" @click="go"><a>{{ segment.text }}</a></div>
+  <div v-if="segment.type === 'link'" @click="go"><a :class="color">{{ segment.text }}</a></div>
   <div v-else-if="segment.type === 'bold'"><b>{{ segment.text }}</b></div>
   <div v-else-if="segment.type === 'italics'"><i>{{ segment.text }}</i></div>
   <div v-else-if="segment.type === 'obfuscated'"><ccObfuscate :input="segment.text"/></div>
@@ -32,6 +32,19 @@ export default {
       this.$router.replace({
         path: `/encyclopedia${currentPathArray.reverse().join('/')}`,
       });
+    },
+  },
+  computed: {
+    state() {
+      return this.$store.state.theme_change.currentState;
+    },
+    color() {
+      switch (this.state) {
+        default:
+          return '';
+        case 'skullport':
+          return 'has-text-warning';
+      }
     },
   },
 };
