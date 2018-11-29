@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Vue from 'vue';
+import SHA256 from 'crypto-js/sha256';
 import Granim from 'granim';
-import VueCytoscape from 'vue-cytoscape';
 import 'vue-cytoscape/dist/vue-cytoscape.css';
 import { ObserveVisibility } from 'vue-observe-visibility';
 import App from './App.vue';
@@ -10,6 +10,7 @@ import store from './store';
 
 Vue.directive('observe-visibility', ObserveVisibility);
 Object.defineProperty(Vue.prototype, '$_', { value: _ });
+Object.defineProperty(Vue.prototype, '$sha', { value: SHA256 });
 Object.defineProperty(Vue.prototype, '$granim', {
   value: new Granim({
     element: '#gradient-background',
@@ -40,7 +41,6 @@ Object.defineProperty(Vue.prototype, '$granim', {
     },
   }),
 });
-Vue.use(VueCytoscape);
 
 Vue.config.productionTip = false;
 

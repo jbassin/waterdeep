@@ -45,6 +45,13 @@
             {{ tabNames.encyclopedia }}
           </a>
         </div>
+        <div class="level-item">
+          <a class="button is-rounded"
+             :class="[tab === '/user' ? selectedColor : color]"
+             @click="goto('/user/redirect')">
+            {{ tabNames.user }}
+          </a>
+        </div>
       </nav>
     </div>
   </div>
@@ -93,6 +100,7 @@ export default {
             recap: 'The Story So Far',
             undermountain: 'The Undermountain',
             encyclopedia: 'Encyclopedia',
+            user: 'Login/Register/Info',
           };
         case 'skullport':
           return {
@@ -101,6 +109,7 @@ export default {
             recap: 'Unnecessary Details',
             undermountain: 'The Scourge\'s Source',
             encyclopedia: 'Grand Font of Knowledge',
+            user: 'Personal Drivel',
           };
       }
     },

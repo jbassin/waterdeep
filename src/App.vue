@@ -16,6 +16,10 @@ export default {
   name: 'app',
   components: { ccHeader, ccLinks },
   created() {
+    this.$store.dispatch({
+      type: 'global_information/setUserInfo',
+      userInfo: JSON.parse(localStorage.getItem('userInfo')),
+    });
     this.$router.beforeEach((to, from, next) => {
       const pathArray = to.path.split('/');
       this.$store.dispatch({
